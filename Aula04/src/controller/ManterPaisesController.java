@@ -58,8 +58,8 @@ public class ManterPaisesController extends HttpServlet {
 			break;
 			
 		case "Listar":
-			ArrayList<Paises> paisesA = cs.listarTodos();
-			request.setAttribute("paises", paisesA);
+			ArrayList<Paises> paises2 = cs.listarTodos();
+			request.setAttribute("paises", paises2);
 			dispatcher = request.getRequestDispatcher("ListarPaises.jsp");
 		}
 	//despachar para o JSP correto

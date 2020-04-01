@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.tomcat.dbcp.dbcp2.ConnectionFactory;
+//import org.apache.tomcat.dbcp.dbcp2.ConnectionFactory;
 
 import model.Paises;
 
@@ -183,7 +183,7 @@ public class PaisesDao {
 					paises.setId(rs.getInt("id"));
 					paises.setNome(rs.getString("nome"));
 					paises.setPopulacao(rs.getLong("populacao"));
-					paises.setArea(rs.getDouble("email"));
+					paises.setArea(rs.getDouble("area"));
 					paisesA.add(paises);
 				} 
 		} catch (SQLException e1) {

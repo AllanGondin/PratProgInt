@@ -9,14 +9,14 @@
 </head>
 <body>
 <%
-	ArrayList<Paises> paisesA = (ArrayList<Paises>) request.getAttribute("paisesA");
-	for(Paises ps:paisesA){
+	ArrayList<Paises> paises = (ArrayList<Paises>) request.getAttribute("paises");
+	for(Paises p:paises){
 %>
 <p>
-<label>ID:</label> <%=ps.getId() %>
-<label>Nome:</label> <%=ps.getNome() %><br>
-<label>Populacao:</label> <%=ps.getPopulacao() %><br>
-<label>Area:</label> <%=ps.getArea()%>
+ID: <%=p.getId() %><br>
+Nome: <%=p.getNome() %><br>
+Populacao: <%=p.getPopulacao()%><br>
+Area: <%=p.getArea() %>
 </p>
 <%} %>
 </body>
