@@ -1,20 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
 <title>Cadastro de Paises</title>
 </head>
 <body>
-	<h3>Cadastro de Paises</h3>
-	<form action="ManterPaises.do" method="get">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">PAISES</a>
 
-		<input placeholder="Name"type="text" name="nome"><br> 
-		<input placeholder="População" name="populacao"><br> 
-		<input placeholder="Area" name="area"><br> 
-		<div>
-		<input type="submit" name="acao" value="Incluir">
-		<input type="submit" name="acao" value="Listar">
-		</div>
-	</form>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#textoNavbar" aria-controls="textoNavbar" aria-expanded="false" aria-label="Alterna navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="textoNavbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Melhores Paises</a>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+
+    <div class="container">
+
+        <div class="page-header">
+            <h1>Formulário de Paises</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Cadastre o Pais</h3>
+
+                <form action="ManterPaises.do" method="get">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="populacao">Populacao</label>
+                            <input type="text" class="form-control" name="populacao" id="populacao" placeholder="População">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="area">Area</label>
+                            <input type="text" class="form-control" name="area" id="area" placeholder="Area">
+                        </div>
+                    </div>
+                    <hr /> 
+
+                    <div id="actions" class="row">
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary" name="acao" value="Incluir">Salvar</button>
+                        </div>
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-primary" name="acao" value="Listar">Listar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
