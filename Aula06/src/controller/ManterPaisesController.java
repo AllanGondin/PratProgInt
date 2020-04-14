@@ -36,12 +36,21 @@ public class ManterPaisesController extends HttpServlet {
 		String pArea = request.getParameter("area");
 		String acao = request.getParameter("acao");
 		
+		
+		
 
 		// instanciar o javabean
 		Paises paises = new Paises();
 		paises.setNome(pNome);
 		paises.setPopulacao(Long.parseLong(pPopulacao));
 		paises.setArea(Double.parseDouble(pArea));
+		
+		if("".equals(pNome))
+			pNome = " ";
+		 if("".equals(pPopulacao))
+				pPopulacao = "0";
+		 if("".equals(pArea));
+			pArea = "0";
 
 		// instanciar o service
 		PaisesService cs = new PaisesService();
