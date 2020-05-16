@@ -38,8 +38,13 @@ public class PaisesService {
 		return dao.tresPaises();
 		
 	}
-	public ArrayList<Paises> listarTodos() {
+	public ArrayList<Paises> listarPaises() {
 		return dao.listarTodos();
+		
+	}
+	
+	public ArrayList<Paises> listarPaises(String chave) {
+		return dao.listarTodos(chave);
 		
 	}
 

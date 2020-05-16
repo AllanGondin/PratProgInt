@@ -10,50 +10,137 @@
     <title>Lista Paises</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
 <title>Paises</title>
 </head>
 <body>
 
-	<!-- Barra superior com os menus de navegação -->
-	<c:import url="Menu.jsp"/>
+          <!-- Modal -->
+            <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="modalLabel">Excluir Pais</h4>
+                        </div>
+                        <div class="modal-body">
+                            Deseja realmente excluir este cliente?
+                        </div>
+                        <div class="modal-footer">
+                            <form action="ManterPaises.do" method="post">
+                                <input type="hidden" name="id" id="id_excluir" />
+                                <button type="submit" class="btn btn-primary" name="acao" value="Excluir">Sim</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal -->
+            
+
+	 <!-- Barra superior com os menus de navegação -->
+			<c:import url="Menu.jsp"/>
 	  
-	<c:forEach var = "paises" items="${paises}">
+	            <div id="main" class="container">
+                <form action="listar_paises.do" method="post">
+                    <div id="top" class="row">
+                        <div class="col-md-3">
+                            <h2>Paises</h2>
+                        </div>
 
-	  <div class="container col-md-11">
+                        <div class="col-md-6">
+                            <div class="input-group h2">
+                                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar paises (deixe vazio para trazer todos)">
+                                
+					                <button class="btn btn-primary" type="submit" name="acao" value="buscar">
+			                	    <span class="glyphicon glyphicon-search">Listar</span></button>
+                               
+                            </div>
+                        </div>
 
-		<h3 class="page-header">País:  ${paises.id}</h3>
-		<div class="row">
-			<div class="col-md-12">
-				<p><strong>Nome</strong></p>
-				<p>${paises.nome}</p>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-md-6">
-				<p><strong>População</strong></p>
-				<p>${paises.populacao}</p>
-			</div>
-		</div>
+                        <div class="col-md-3">
+                            <a href="CriarPaises.jsp" class="btn btn-primary pull-right h2">Novo Pais</a>
+                        </div>
+                    </div>
+                    <!-- /#top -->
+                </form>
+                <hr />
+                <c:if test="${not empty lista}">
+                <div id="list" class="row">
 
-		<div class="row">
-			<div class="col-md-6">
-				<p><strong>Area</strong></p>
-				<p>${paises.area}</p>
-			</div>
-		</div>
-		<hr />
-	  </div>
-	  
-	</c:forEach>
-	
-		<div id="actions" class="row justify-content-md-center">
-			<div class="col-md-11">
-				<a href="index.jsp">
-				<button type="button" class="btn btn-info btn-block">Voltar</button>
-				</a>
-			</div>
-		</div>
-</body>
-</html>
+                    <div class="table-responsive col-md-12">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Area</th>
+                                    <th>População</th>
+                                    <th class="actions">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+          					<c:forEach var="paises" items="${lista}">
+                                       <tr>
+                                            <td>
+                                               ${paises.id }
+                                            </td>
+                                            <td>
+                                                ${paises.nome }
+                                            </td>
+                                            <td>
+                                                ${paises.area }
+                                            </td>
+                                            <td>
+                                                ${paises.populacao }
+                                            </td>
+                                            <td class="actions">
+                                                <a class="btn btn-success btn-xs" href="ManterPaises.do?acao=Visualizar&id=${paises.id }">Visualizar</a>
+                                                <a class="btn btn-warning btn-xs" href="ManterPaises.do?acao=Editar&id=${paises.id }">Editar</a>
+                                                <button id="btn${paises.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${paises.id }">Excluir</button>
+                                            </td>
+                                        </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!-- /#list -->
+
+                <div id="bottom" class="row">
+                    <div class="col-md-12">
+                        <!-- paginação ainda não foi implementada -->
+                        <ul class="pagination">
+                            <li class="disabled"><a>&lt; Anterior</a>
+                            </li>
+                            <li class="disabled"><a>1</a>
+                            </li>
+                            <li><a href="#">2</a>
+                            </li>
+                            <li><a href="#">3</a>
+                            </li>
+                            <li class="next"><a href="#" rel="next">Próximo &gt;</a>
+                            </li>
+                        </ul>
+                        <!-- /.pagination -->
+                    </div>
+                </div>
+                </c:if>
+                <!-- /#bottom -->
+            </div>
+            <!-- /#main -->
+            <script src="js/jquery.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script type="text/javascript">
+                $("#delete-modal").on('show.bs.modal', function(event) {
+                    var button = $(event.relatedTarget); //botao que disparou a modal
+                    var recipient = button.data('cliente');
+                    $("#id_excluir").val(recipient);
+                });
+            </script>
+        </body>
+
+        </html>
